@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "DermsService"
+version = "0.1.0"
+description = "Distributed Energy Resource Management System"
+authors = ["farzad.kh94 <f69.khoobbakht@gmail.com>"]
+
+[tool.poetry.dependencies]
+click = "^8"
+python = "^3.8"
+Flask = "^2"
+flask-marshmallow = "^0.14"
+Flask-SQLAlchemy = "^2.5"
+marshmallow-sqlalchemy = "^0"
+Flask-Migrate = "^3.1"
+psycopg2-binary = "^2.9"
+hiredis = "^2"
+gunicorn = "^20"
+requests = "^2"
+python-dateutil = "^2"
+numpy = "^1"
+pandas = "^1"
+Flask-Cors = "^3"
+deepdiff = "^5"
+Flask-APScheduler = "^1"
+marshmallow-enum = "^1.5.1"
+flask-redis = "^0.4.0"
+tenacity = "^8.0.1"
+
+[tool.poetry.dev-dependencies]
+bandit = "^1"
+black = "^22"
+flask-shell-ipython = "^0"
+isort = "^5"
+jupyterlab = "^3"
+jupyterlab-code-formatter = "^1"
+line_profiler = "^3"
+memory-profiler = "^0"
+mypy = "^0"
+pylint = "^2"
+pytest = "^7"
+python-dotenv = "^0"
+types-redis = "^4"
+types-python-dateutil = "^2"
+types-requests = "^2"
+umg-client = {path = "bin/umg_client-0.4.1-py3-none-any.whl"}
+vulture = "^2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

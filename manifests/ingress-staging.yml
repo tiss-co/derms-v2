@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: derms-api
+  namespace: staging
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - derms-api-staging.edgecom.io
+      secretName: edgecom-io-tls
+  rules:
+    - host: derms-api-staging.edgecom.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: derms-api
+                port:
+                  name: http
+            path: /
+            pathType: Prefix

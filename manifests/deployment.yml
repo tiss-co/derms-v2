@@ -1,0 +1,126 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: derms-api
+  labels:
+    app: derms-api
+spec:
+  selector:
+    matchLabels:
+      app: derms-api
+  template:
+    metadata:
+      labels:
+        app: derms-api
+    spec:
+      containers:
+        - name: default
+          image: 152368484097.dkr.ecr.ca-central-1.amazonaws.com/derms/api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: FLASK_APP
+              value: wsgi:app
+            - name: FLASK_ENV
+              value: production
+            - name: TESTING
+              value: "false"
+            - name: FLASK_DEBUG
+              value: "false"
+            - name: FLASK_HOST
+              value: "0.0.0.0"
+            - name: FLASK_PORT
+              value: "80"
+            - name: FLASK_FORCE_HTTPS
+              value: "false"
+            - name: SECRET_KEY
+              value: 7b26449f9ba2ab65966a88e67068835c553de53810a36ec10d74e3e56e8ba1d9
+            - name: SESSION_PROTECTION
+              value: strong
+            - name: REMEMBER_COOKIE_DURATION
+              value: "3600"
+            - name: REMEMBER_COOKIE_HTTPONLY
+              value: "true"
+            - name: REMEMBER_COOKIE_REFRESH_EACH_REQUEST
+              value: "false"
+            - name: SECURITY_HASH_METHOD
+              value: pbkdf2:sha256:1_000_000
+            - name: SECURITY_SALT_LENGHT
+              value: "32"
+            - name: SESSION_COOKIE_HTTPONLY
+              value: "true"
+            - name: SESSION_COOKIE_SECURE
+              value: "true"
+            - name: SESSION_COOKIE_SAMESITE
+              value: Lax
+            - name: PERMANENT_SESSION_LIFETIME
+              value: "3600"
+            - name: SESSION_TYPE
+              value: redis
+            - name: CACHE_TYPE
+              value: RedisCache
+            - name: CACHE_DEFAULT_TIMEOUT
+              value: "300"
+            - name: STRICT_SLASHES
+              value: "false"
+            - name: ALLOWED_UPLOAD_FILE_EXTENSIONS
+              value: "jpg jpe jpeg png gif bmp webp ico"
+            - name: ADMIN_FIRST_NAME
+              value: Tiss
+            - name: ADMIN_LAST_NAME
+              value: Co
+            - name: ADMIN_USERNAME
+              value: admin
+            - name: ADMIN_EMAIL
+              value: admin@tiss.co
+            - name: ADMIN_PASSWORD
+              value: hiNgStERbablECTI
+            - name: DATABASE_DIALECT
+              value: postgresql
+            - name: CBIOT_USERNAME
+              value: username
+            - name: CBIOT_PASSWORD
+              value: password
+            - name: SCHEDULER_TIMEZONE
+              value: "UTC"
+            - name: DATABASE_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: derms-psql-config
+                  key: dbName
+            - name: DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: derms-psql-config
+                  key: host
+            - name: DATABASE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: derms-psql-config
+                  key: port
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: derms-psql-secret
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: derms-psql-secret
+                  key: password
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: derms-redis-config
+                  key: host
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: derms-redis-config
+                  key: port
+            - name: REDIS_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: derms-redis-config
+                  key: index

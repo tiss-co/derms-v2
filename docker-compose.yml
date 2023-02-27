@@ -1,0 +1,57 @@
+x-derms-image: &derms-image tiss-co/derms:v0.1.0
+x-derms-networks:
+  &derms-networks
+  - dermsnet
+x-derms-depends-on:
+  &derms-depends-on
+  - dermsredis
+  - dermsdb
+
+version: "3.7"
+services:
+  dermsredis:
+    env_file: .env
+    image: bitnami/redis:6.2
+    container_name: dermsredis
+    restart: unless-stopped
+    networks: *derms-networks
+    volumes:
+      - dermsredis:/data
+    # enable it just for development purposes only.
+    ports:
+      - 6379:6379
+
+  dermsdb:
+    env_file: .env
+    image: bitnami/postgresql:13
+    container_name: dermsdb
+    restart: unless-stopped
+    networks: *derms-networks
+    volumes:
+      - dermsdb:/var/lib/postgresql/data
+    # enable it just for development purposes only.
+    ports:
+      - 5432:5432
+
+  dermsapp:
+    env_file: .env
+    build: .
+    image: *derms-image
+    container_name: dermsapp
+    command: [ "/app/docker/docker-bootstrap.sh", "app-gunicorn" ]
+    restart: unless-stopped
+    networks: *derms-networks
+    depends_on: *derms-depends-on
+    ports:
+      - 8088:80
+
+volumes:
+  dermsredis:
+    external: false
+  dermsdb:
+    external: false
+
+networks:
+  dermsnet:
+    name: dermsnet
+    external: false

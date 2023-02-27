@@ -1,0 +1,682 @@
+{
+	"info": {
+		"_postman_id": "2a43a835-5f42-485e-94d3-53e60ef16896",
+		"name": "DERMS_v8.7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3109875"
+	},
+	"item": [
+		{
+			"name": "Battery",
+			"item": [
+				{
+					"name": "Get Battery Load",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/PCS/load",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"PCS",
+								"load"
+							]
+						},
+						"description": "Get the forecast 24-hour load of the next day."
+					},
+					"response": []
+				},
+				{
+					"name": "Get PCS Battery Consumption",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "2022-08-09",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/PCS/consumption?date=2022-07-25",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"PCS",
+								"consumption"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2022-07-25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Battery Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/PCS/details",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"PCS",
+								"details"
+							]
+						},
+						"description": "Get current battery status information."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Voltage Current",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/PCS/voltage_current?date=2022-07-25",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"PCS",
+								"voltage_current"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2022-07-25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get power flow",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/PCS/power_flow",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"PCS",
+								"power_flow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Battery Load",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"2022-10-04\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/PCS/load",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"PCS",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Battery Load",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"load\": [\n        {\n            \"datetime\": \"2022-10-15T00:00:00\",\n            \"value\": 200.0\n        },\n        {\n            \"datetime\": \"2022-10-15T01:00:00\",\n            \"value\": 200.0\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/PCS/load",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"PCS",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Battery",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\":5,\n    \"component_id\": 434,\n    \"battery_type\":\"PCS\",\n    \"soc_max\": 1500,\n    \"p_max\":500,\n    \"p_charge_max\":120,\n    \"feeder_max\": 600,\n    \"charging_margin\": 160,\n    \"second_end_time\":23,\n    \"second_start_time\": 24,\n    \"first_start_time\":1,\n    \"first_end_time\": 10,\n    \"soc_min_coef\": 0.1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Battery By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/6",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Battery By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building_id\":2,\n    \"battery_type\":\"sh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Batter By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/battery/6",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"battery",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activations",
+			"item": [
+				{
+					"name": "Get Activated Programs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/activation/status?battery_id=4&date=2023-02-19",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"activation",
+								"status"
+							],
+							"query": [
+								{
+									"key": "battery_id",
+									"value": "4"
+								},
+								{
+									"key": "date",
+									"value": "2023-02-19"
+								}
+							]
+						},
+						"description": "Get activated programs status (GA, DR, HOEP)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Total Activation Hours",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/activation/total_activated_hours?start=2023-02-18&end=2023-02-21&battery_id=3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"activation",
+								"total_activated_hours"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2023-02-18"
+								},
+								{
+									"key": "end",
+									"value": "2023-02-21"
+								},
+								{
+									"key": "battery_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Program Activation Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"program_id\": 6,\n    \"is_manual\": false,\n    \"status\": true,\n    \"activation\": {\n        \"start\": 14,\n        \"end\": 15\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/activation/set_activation",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"activation",
+								"set_activation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alarm",
+			"item": [
+				{
+					"name": "Get Alarn Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/alarm/status",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"alarm",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Alarm Content",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/alarm/content",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"alarm",
+								"content"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept/Reject Alarm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"decision\": \"accept\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/alarm/management",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"alarm",
+								"management"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Alarm History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"programs\":[\"DR\", \"GA\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/alarm/history",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"alarm",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Program",
+			"item": [
+				{
+					"name": "Get Program By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/program/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"program",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Program",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"battery_id\":1,\n    \"name\": \"HOEP\",\n    \"priority\":2,\n    \"is_global\": false\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/program/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"program",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Program By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"priority\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/derms/program/5",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"program",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Program By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/derms/program/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"derms",
+								"program",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();",
+							"pm.collectionVariables.set(\"TOKEN\", responseData.result.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": {{USERNAME}},\n  \"password\": {{PASSWORD}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{AUTH_URL}}/umg/login",
+					"host": [
+						"{{AUTH_URL}}"
+					],
+					"path": [
+						"umg",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "https://derms-api-staging.edgecom.io"
+		},
+		{
+			"key": "USERNAME",
+			"value": "\"admin\""
+		},
+		{
+			"key": "PASSWORD",
+			"value": "\"Edgecomenergy@2018!\""
+		},
+		{
+			"key": "TOKEN",
+			"value": ""
+		},
+		{
+			"key": "AUTH_URL",
+			"value": "https://api-staging.edgecom.io"
+		}
+	]
+}

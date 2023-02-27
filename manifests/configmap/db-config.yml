@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: derms-psql-config
+data:
+  dbName: derms
+  host: edge-db.cpqygq4du3ho.ca-central-1.rds.amazonaws.com
+  port: "5432"

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: derms-redis-config
+data:
+  host: edgecom-redis.n2vete.ng.0001.cac1.cache.amazonaws.com
+  port: "6379"
+  index: "12"
