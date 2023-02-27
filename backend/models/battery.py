@@ -1,9 +1,9 @@
-from backend.database import Column, Float, Model, String, Integer
+from backend.database import Column, Float, Integer, Model, String
 
 
 class Battery(Model):
     __tablename__ = "battery"
-    
+
     building_id = Column(Integer(), nullable=False)
     component_id = Column(Integer(), nullable=False)
     battery_type = Column(String(), nullable=False)
@@ -13,10 +13,10 @@ class Battery(Model):
     p_charge_max = Column(Float(), nullable=False)
     feeder_max = Column(Float(), nullable=False)
     charging_margin = Column(Float(), nullable=False)
-    first_start_time = Column(Integer(), nullable=False)
-    first_end_time = Column(Integer(), nullable=False)
-    second_start_time = Column(Integer(), nullable=False)
-    second_end_time = Column(Integer(), nullable=False)
+    first_charging_start_time = Column(Integer(), nullable=False)
+    first_charging_end_time = Column(Integer(), nullable=False)
+    second_charging_start_time = Column(Integer(), nullable=False)
+    second_charging_end_time = Column(Integer(), nullable=False)
 
     __repr_props__ = (
         "id",
@@ -29,8 +29,8 @@ class Battery(Model):
         "p_charge_max",
         "feeder_max",
         "charging_margin",
-        "first_start_time",
-        "first_end_time",
-        "second_start_time",
-        "second_end_time",
+        "first_charging_start_time",
+        "first_charging_end_time",
+        "second_charging_start_time",
+        "second_charging_end_time",
     )
