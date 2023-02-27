@@ -24,10 +24,10 @@ def validate_create_battery():
     parser.add_argument("feeder_max", type=float, required=True)
     parser.add_argument("charging_margin", type=float, required=True)
 
-    parser.add_argument("first_end_time", type=int, required=True)
-    parser.add_argument("first_start_time", type=int, required=True)
-    parser.add_argument("second_start_time", type=int, required=True)
-    parser.add_argument("second_end_time", type=int, required=True)
+    parser.add_argument("first_charging_end_time", type=int, required=True)
+    parser.add_argument("first_charging_start_time", type=int, required=True)
+    parser.add_argument("second_charging_start_time", type=int, required=True)
+    parser.add_argument("second_charging_end_time", type=int, required=True)
 
     args = parser.parse_args()
 
@@ -50,10 +50,10 @@ def validate_edit_battery():
     parser.add_argument("feeder_max", type=float)
     parser.add_argument("charging_margin", type=float)
 
-    parser.add_argument("first_end_time", type=int)
-    parser.add_argument("first_start_time", type=int)
-    parser.add_argument("second_start_time", type=int)
-    parser.add_argument("second_end_time", type=int)
+    parser.add_argument("first_charging_end_time", type=int, required=True)
+    parser.add_argument("first_charging_start_time", type=int, required=True)
+    parser.add_argument("second_charging_start_time", type=int, required=True)
+    parser.add_argument("second_charging_end_time", type=int, required=True)
 
     args = parser.parse_args()
     args = {k: v for k, v in args.items() if v}

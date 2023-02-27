@@ -1,6 +1,7 @@
+from marshmallow import EXCLUDE, fields
+
 from backend.extensions import ma
 from backend.models.battery import Battery
-from marshmallow import fields, EXCLUDE
 
 
 class BatterySchema(ma.SQLAlchemySchema):
@@ -19,7 +20,7 @@ class BatterySchema(ma.SQLAlchemySchema):
     soc_min = fields.Float()
     feeder_max = fields.Float()
     charging_margin = fields.Float()
-    first_start_time = fields.Integer()
-    first_end_time = fields.Integer()
-    second_start_time = fields.Integer()
-    second_end_time = fields.Integer()
+    first_charging_start_time = fields.Integer()
+    first_charging_end_time = fields.Integer()
+    second_charging_start_time = fields.Integer()
+    second_charging_end_time = fields.Integer()
