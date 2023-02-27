@@ -30,7 +30,7 @@ class PCSBattery:
         logger.info("Loading input data...")
         # Define battery attributes
         self.soc_max = battery_features.get("soc_max")
-        self.soc_min = battery_features.get("soc_min_coef") * self.soc_max
+        self.soc_min = battery_features.get("soc_min")
         self.soc_available = battery_features.get("soc_available")
         self.p_max = battery_features.get("p_max")
         self.p_charge_max = battery_features.get("p_charge_max")
@@ -50,25 +50,24 @@ class PCSBattery:
         self.model.Load = Param(self.model.times, initialize=load)
 
         self.model.first_chargingـtimes = RangeSet(
-            battery_features.get("first_chargingـtimes_st"),
-            battery_features.get("first_chargingـtimes_et"),
+            battery_features.get("first_charging_start_time"),
+            battery_features.get("first_charging_end_time"),
         )
 
         self.model.second_chargingـtimes = RangeSet(
-            battery_features.get("second_chargingـtimes_st"),
-            battery_features.get("second_chargingـtimes_et"),
+            battery_features.get("second_charging_start_time"),
+            battery_features.get("second_charging_end_time"),
         )
 
         inactive_times = RangeSet(1, 24)
         self.cost_coef = []
 
         for item in programs:
-
             pgrm = dict()
             pgrm["name"] = item.get("name")
-            pgrm["coef"] = settings.PROGRAMS_COEF_MAPPER[item.get("coef")]
-            pgrm["active_time"] = RangeSet(item.get("start"), item.get("end")) if item["activator"] else []
-            inactive_times -= pgrm["active_time"] if item["activator"] else []
+            pgrm["coef"] = settings.PROGRAMS_COEF_MAPPER[item.get("priority")]
+            pgrm["active_time"] = RangeSet(item.get("start"), item.get("end")) if item["status"] else []
+            inactive_times -= pgrm["active_time"] if item["status"] else []
             self.cost_coef.append(pgrm)
 
         self.model.inactive_times = inactive_times
@@ -144,7 +143,7 @@ class PCSBattery:
         self.model.constraint_charge3 = Constraint(self.model.times, rule=self.constraint_charge3_rule)
 
         self.model.constraint_tunecharge1 = Constraint(
-            next(item["active_time"] for item in self.cost_coef if item["active_time"]),
+            self.get_first_active_program(),
             rule=self.constraint_tunecharge1_rule,
         )
 
@@ -158,6 +157,16 @@ class PCSBattery:
 
         self.model.constraint_UCbattery = Constraint(self.model.times, rule=self.constraint_UCbattery_rule)
         self.model.constraint_SOCbattery = Constraint(self.model.times, rule=self.constraint_SOCbattery_rule)
+
+    def get_first_active_program(self):
+        temp = RangeSet()
+        for item in self.cost_coef:
+            if item["active_time"]:
+                temp = item["active_time"]
+                break
+            else:
+                continue
+        return temp
 
     @staticmethod
     def get_costcoef(coeffient):
