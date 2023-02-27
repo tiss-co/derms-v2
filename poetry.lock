@@ -16,6 +16,17 @@ SQLAlchemy = ">=1.3.0"
 tz = ["python-dateutil"]
 
 [[package]]
+name = "aniso8601"
+version = "9.0.1"
+description = "A library for parsing ISO 8601 strings."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+dev = ["black", "coverage", "isort", "pre-commit", "pyenchant", "pylint"]
+
+[[package]]
 name = "anyio"
 version = "3.6.2"
 description = "High level compatibility layer for multiple asynchronous event loop implementations"
@@ -506,6 +517,23 @@ redis = ">=2.7.6"
 [package.extras]
 dev = ["coverage", "pre-commit", "pytest", "pytest-mock"]
 tests = ["coverage", "pytest", "pytest-mock"]
+
+[[package]]
+name = "flask-restful"
+version = "0.3.9"
+description = "Simple framework for creating REST APIs"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+aniso8601 = ">=0.82"
+Flask = ">=0.8"
+pytz = "*"
+six = ">=1.3.0"
+
+[package.extras]
+docs = ["sphinx"]
 
 [[package]]
 name = "flask-shell-ipython"
@@ -1472,6 +1500,14 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
+name = "ply"
+version = "3.11"
+description = "Python Lex & Yacc"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "prometheus-client"
 version = "0.15.0"
 description = "Python client for the Prometheus monitoring system."
@@ -1583,6 +1619,22 @@ typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""
 [package.extras]
 spelling = ["pyenchant (>=3.2,<4.0)"]
 testutils = ["gitpython (>3)"]
+
+[[package]]
+name = "pyomo"
+version = "6.5.0"
+description = "Pyomo: Python Optimization Modeling Objects"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+ply = "*"
+
+[package.extras]
+docs = ["Sphinx (>2)", "numpy", "scipy", "sphinx-copybutton", "sphinx-rtd-theme (>0.5)", "sphinxcontrib-jsmath", "sphinxcontrib-napoleon"]
+optional = ["casadi", "dill", "ipython", "matplotlib (!=3.6.1)", "networkx", "numdifftools", "numpy", "openpyxl", "pandas", "pint", "plotly", "python-louvain", "pywin32", "pyyaml", "scipy", "seaborn", "sympy", "xlrd", "z3-solver"]
+tests = ["coverage", "parameterized", "pybind11", "pytest", "pytest-parallel"]
 
 [[package]]
 name = "pyrsistent"
@@ -2145,12 +2197,16 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "7aa98e7f590e1d89c008af18905ee64d68aceeb0dc55dba0f0a48dd70a39f066"
+content-hash = "45d5a9fe363b196618409e95363c4e24682194234a7d889744e053112d5c9274"
 
 [metadata.files]
 alembic = [
     {file = "alembic-1.9.2-py3-none-any.whl", hash = "sha256:e8a6ff9f3b1887e1fed68bfb8fb9a000d8f61c21bdcc85b67bb9f87fcbc4fce3"},
     {file = "alembic-1.9.2.tar.gz", hash = "sha256:6880dec4f28dd7bd999d2ed13fbe7c9d4337700a44d11a524c0ce0c59aaf0dbd"},
+]
+aniso8601 = [
+    {file = "aniso8601-9.0.1-py2.py3-none-any.whl", hash = "sha256:1d2b7ef82963909e93c4f24ce48d4de9e66009a21bf1c1e1c85bdd0812fe412f"},
+    {file = "aniso8601-9.0.1.tar.gz", hash = "sha256:72e3117667eedf66951bb2d93f4296a56b94b078a8a95905a052611fb3f1b973"},
 ]
 anyio = [
     {file = "anyio-3.6.2-py3-none-any.whl", hash = "sha256:fbbe32bd270d2a2ef3ed1c5d45041250284e31fc0a4df4a5a6071842051a51e3"},
@@ -2509,6 +2565,10 @@ flask-migrate = [
 flask-redis = [
     {file = "flask-redis-0.4.0.tar.gz", hash = "sha256:e1fccc11e7ea35c2a4d68c0b9aa58226a098e45e834d615c7b6c4928b01ddd6c"},
     {file = "flask_redis-0.4.0-py2.py3-none-any.whl", hash = "sha256:8d79eef4eb1217095edab603acc52f935b983ae4b7655ee7c82c0dfd87315d17"},
+]
+flask-restful = [
+    {file = "Flask-RESTful-0.3.9.tar.gz", hash = "sha256:ccec650b835d48192138c85329ae03735e6ced58e9b2d9c2146d6c84c06fa53e"},
+    {file = "Flask_RESTful-0.3.9-py2.py3-none-any.whl", hash = "sha256:4970c49b6488e46c520b325f54833374dc2b98e211f1b272bd4b0c516232afe2"},
 ]
 flask-shell-ipython = [
     {file = "flask-shell-ipython-0.4.1.tar.gz", hash = "sha256:fb3b390f4dc03d7a960c62c5b51ce4deca19ceff77e4db3d4670012adc529ebd"},
@@ -3204,6 +3264,10 @@ pluggy = [
     {file = "pluggy-1.0.0-py2.py3-none-any.whl", hash = "sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3"},
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
 ]
+ply = [
+    {file = "ply-3.11-py2.py3-none-any.whl", hash = "sha256:096f9b8350b65ebd2fd1346b12452efe5b9607f7482813ffca50c22722a807ce"},
+    {file = "ply-3.11.tar.gz", hash = "sha256:00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3"},
+]
 prometheus-client = [
     {file = "prometheus_client-0.15.0-py3-none-any.whl", hash = "sha256:db7c05cbd13a0f79975592d112320f2605a325969b270a94b71dcabc47b931d2"},
     {file = "prometheus_client-0.15.0.tar.gz", hash = "sha256:be26aa452490cfcf6da953f9436e95a9f2b4d578ca80094b4458930e5f584ab1"},
@@ -3334,6 +3398,24 @@ pygments = [
 pylint = [
     {file = "pylint-2.15.10-py3-none-any.whl", hash = "sha256:9df0d07e8948a1c3ffa3b6e2d7e6e63d9fb457c5da5b961ed63106594780cc7e"},
     {file = "pylint-2.15.10.tar.gz", hash = "sha256:b3dc5ef7d33858f297ac0d06cc73862f01e4f2e74025ec3eff347ce0bc60baf5"},
+]
+pyomo = [
+    {file = "Pyomo-6.5.0-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:9c4b63e221f4018020ad80c66bf1dea28a249121a52728cbb2f0dce8dd44d29d"},
+    {file = "Pyomo-6.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d2a8fe8d576f501d52c63ff3d6a70844b154a289a985fbadda50bea76606df94"},
+    {file = "Pyomo-6.5.0-cp310-cp310-win_amd64.whl", hash = "sha256:72df6fd46e18a9f152556ef1515d347d15a46d35660d7c5c1372440e4e61ea8a"},
+    {file = "Pyomo-6.5.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:5eae96848c9568138234381d9856042ffd89548873bfa88fd180cf4ab3fdc060"},
+    {file = "Pyomo-6.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6544cb5bb9916aee7222cb66e5179c86baef52e1be2cc7ca0e5b97fc20cb1768"},
+    {file = "Pyomo-6.5.0-cp311-cp311-win_amd64.whl", hash = "sha256:518e986c435f7f15157f72819ecc0676a6c6f568178a359e56999b3be94998da"},
+    {file = "Pyomo-6.5.0-cp37-cp37m-macosx_10_15_x86_64.whl", hash = "sha256:08a2fedc40db8855a43eff8e6c4c8803cdf5d80f1b327c16cc590ed843ad3797"},
+    {file = "Pyomo-6.5.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bb8947b2a183dccfaada3f192712e15b1f6cafa3565baf4ff8be590e297904a4"},
+    {file = "Pyomo-6.5.0-cp37-cp37m-win_amd64.whl", hash = "sha256:d90fc7c5444e0bbb617a788c32105082265a3803f718ef7f745477b51e9f7b5a"},
+    {file = "Pyomo-6.5.0-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:068a1ab45e5050f349d50ffa502e7013fe153aabac97bc094f19f3973be297d7"},
+    {file = "Pyomo-6.5.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f300acc614fa3450c85e5a6ea534b87bc6c17ce6f055515efba4fede7a0812b2"},
+    {file = "Pyomo-6.5.0-cp38-cp38-win_amd64.whl", hash = "sha256:938a69a1226445f7d81784b28245d1182146252276139a3bf4fdcbe1b932cca6"},
+    {file = "Pyomo-6.5.0-cp39-cp39-macosx_11_0_x86_64.whl", hash = "sha256:950a470633dceef2b104403f6e56e44ad897ea1423831ce9d7254de3a18c9810"},
+    {file = "Pyomo-6.5.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:65118a187ea067ce9fedf19ef61dba0dfd571744595b9d19e6c16e086187b120"},
+    {file = "Pyomo-6.5.0-cp39-cp39-win_amd64.whl", hash = "sha256:ed454fbfd691ea95af004d74776acf6d26f22b382ef412a3348e12e1e822834a"},
+    {file = "Pyomo-6.5.0.tar.gz", hash = "sha256:5a23e775bba9fdbad22698fa1a841e662482edc979f2dea41cc6c54b1bb4b968"},
 ]
 pyrsistent = [
     {file = "pyrsistent-0.19.3-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:20460ac0ea439a3e79caa1dbd560344b64ed75e85d8703943e0b66c2a6150e4a"},

@@ -25,6 +25,8 @@ Flask-APScheduler = "^1"
 marshmallow-enum = "^1.5.1"
 flask-redis = "^0.4.0"
 tenacity = "^8.0.1"
+pyomo = "^6.5.0"
+flask-restful = "^0.3.9"
 
 [tool.poetry.dev-dependencies]
 bandit = "^1"

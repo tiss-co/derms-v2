@@ -48,3 +48,5 @@ urllib3==1.26.12
 werkzeug==2.2.2
 wrapt==1.14.1
 zipp==3.8.1
+flask-restful==0.3.9
+pyomo==6.5.0
